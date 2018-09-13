@@ -9,28 +9,22 @@
   -->
 
 <manifest>
-    <remote name="dockerfiles"
+    <remote name="case-ta6"
         fetch="."
     />
 
-    <remote name="OpenUxAS"
-        fetch="."
-        />
-
-    <remote name="LmcpGen"
-        fetch="."
-        />
+    <remote name="afrl-rq"
+        fetch="https://github.com/afrl-rq"
+    />
 
     <!-- default revision for each project, and name of the remote -->
-    <default revision="master"
-        remote="dockerfiles"
-    />
+    <default revision="master" remote="case-ta6" />
 
     <project name="experimental-platform-docker-images" path="dockerfiles">
         <linkfile src="gradle.build" dest="gradle.build" />
     </project>
 
     <project name="OpenUxAS" />
-    <project name="LmcpGen" />
+    <project name="LmcpGen" remote="afrl-rq" />
 
 </manifest>
