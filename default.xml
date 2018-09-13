@@ -24,7 +24,7 @@
         <linkfile src="gradle.build" dest="gradle.build" />
     </project>
 
-    <project name="OpenUxAS" />
+    <project name="OpenUxAS" revision="develop-case-ta6" />
     <project name="LmcpGen" remote="afrl-rq" />
 
 </manifest>
