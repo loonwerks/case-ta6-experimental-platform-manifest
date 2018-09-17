@@ -9,21 +9,48 @@ implementation code for the UxAS message specifications.
 
 ## Requirements:
 
- * Docker (See here for instructions: https://get.docker.com or https://docs.docker.com/engine/installation)
-   Further instructions are available in the dockerfiles/README.md
+ * Git Repo (See below for installation instructions.)
+ * Docker (See here for instructions: https://get.docker.com or https://docs.docker.com/engine/installation.)
+   Further instructions are available in the dockerfiles/README.md.
  * Make
 
 It is recommended you add yourself to the `docker` group, so you can run
 Docker commands without using sudo.
 
+## Installing Git Repo
+
+Repo is a tool that makes makes the process of manageing aggregated
+collections of Git repositories easier and more consistent. For more
+information about Repo, see the
+[Repo Command Reference](https://source.android.com/setup/develop/repo).
+
+To install Repo:
+
+Make sure you have a bin/ directory in your home directory and that it is included in your path:
+
+~~~
+mkdir ~/bin
+PATH=~/bin:$PATH
+~~~
+
+Download the Repo tool and ensure that it is executable:
+
+~~~
+curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+chmod a+x ~/bin/repo
+~~~
 
 ## Quick start:
 
 To get a running build environment for sel4 and camkes, run:
 
-    git clone https://eisgit.rockwellcollins.com/case-ta6/experimental-platform-manifest.git
-    cd experimental-platform-manifest
-    make user
+~~~
+mkdir experimental-platform-manifest
+cd experimental-platform-manifest
+repo init -u https://eisgit.rockwellcollins.com/case-ta6/experimental-platform-manifest.git
+repo sync 
+make user
+~~~
 
 This will build and run Docker images resulting in a shell containing all of
 the necessary tools and dependencies to cross build the OpenUxAS application
@@ -31,7 +58,8 @@ for the target ODROID XU4 platform.  The build environment also contains the
 boot loader and Linux operating software used to construct a bootable
 MicroSD card.
 
-Then follow the build instructions for OpenUxAS as follows:
+Then in the build environment shell follow the build instructions for OpenUxAS
+as follows:
 
 ~~~
 cd LmcpGen
