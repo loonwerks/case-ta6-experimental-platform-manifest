@@ -49,7 +49,8 @@ mkdir experimental-platform-manifest
 cd experimental-platform-manifest
 repo init -u https://eisgit.rockwellcollins.com/case-ta6/experimental-platform-manifest.git
 repo sync 
-make user
+cd experimental-platform-manifest
+HOST_DIR=`pwd`/.. make user
 ~~~
 
 This will build and run Docker images resulting in a shell containing all of
@@ -58,7 +59,21 @@ for the target ODROID XU4 platform.  The build environment also contains the
 boot loader and Linux operating software used to construct a bootable
 MicroSD card.
 
-Then in the build environment shell follow the build instructions for OpenUxAS
+Then in the build environment shell follow build from the top-level ANT
+script:
+
+~~~
+ant compile
+~~~
+
+This will follow build the LMCP message compiler, compile the LMCP messages
+to source code, prepare and configure the OpenUxAS build tree, and compile
+the OpenUxAS application from source to a binary for the ODROID XU4 target.
+
+
+## Building OpenUxAS
+
+The top-level ANT build script followsthe build instructions for OpenUxAS
 as follows:
 
 ~~~
@@ -148,10 +163,7 @@ various host development platforms.
 
 ## To Do
 
-1. Construct a top-level build system (perhaps using Gradle or Ant) to
-   automate the steps to build LmcpGen and OpenUxAS.
-
-2. Construct a script to build a whole-disk image for the MicroSD card rather
+1. Construct a script to build a whole-disk image for the MicroSD card rather
    than relying on the complexities in the current build-sd-card.sh script.
    This will allow use of a variety host-platform specific image writing tools
    rather than depending on Bash and DD.
