@@ -21,6 +21,7 @@
     <default revision="master" remote="case-ta6" />
 
     <project name="experimental-platform-docker-images" path="dockerfiles">
+        <linkfile src="top-level-build.xml" dest="build.xml" />
         <linkfile src="build-sd-card.sh" dest="build-sd-card.sh" />
     </project>
 
