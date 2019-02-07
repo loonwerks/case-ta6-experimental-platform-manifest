@@ -45,11 +45,11 @@ chmod a+x ~/bin/repo
 To get a running build environment for sel4 and camkes, run:
 
 ~~~
-mkdir experimental-platform-manifest
-cd experimental-platform-manifest
-repo init -u https://eisgit.rockwellcollins.com/case-ta6/experimental-platform-manifest.git
+mkdir case-ta6-experimental-platform-manifest
+cd case-ta6-experimental-platform-manifest
+repo init -u https://github.com/loonwerks/case-ta6-experimental-platform-manifest.git
 repo sync 
-cd experimental-platform-manifest
+cd case-ta6-experimental-platform-manifest
 HOST_DIR=`pwd`/.. make user
 ~~~
 

@@ -20,12 +20,12 @@
     <!-- default revision for each project, and name of the remote -->
     <default revision="master" remote="case-ta6" />
 
-    <project name="experimental-platform-docker-images" path="dockerfiles">
+    <project name="case-ta6-experimental-platform-dockerfiles" path="dockerfiles">
         <linkfile src="top-level-build.xml" dest="build.xml" />
         <linkfile src="build-sd-card.sh" dest="build-sd-card.sh" />
     </project>
 
-    <project name="OpenUxAS" revision="develop-case-ta6" />
+    <project name="case-ta6-experimental-platform-OpenUxAS" revision="develop-case-ta6" />
     <project name="LmcpGen" remote="afrl-rq" />
 
 </manifest>
