@@ -42,7 +42,7 @@ chmod a+x ~/bin/repo
 
 ## Quick start:
 
-To get a running build environment for sel4 and camkes, run:
+To get a running build environment for OpenUxAS targeting the ARMv7, run:
 
 ~~~
 mkdir case-ta6-experimental-platform-manifest
