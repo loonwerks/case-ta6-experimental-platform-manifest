@@ -40,7 +40,53 @@ curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 ~~~
 
-## Quick start:
+## Quick start (for phase-2 platform assessment #1 ODROID XU4 target):
+
+The following instructions should fetch and build the baseline experimental platform (assuming a Bash shell):
+
+~~~
+mkdir case-ta6-experimental-platform-manifest
+cd case-ta6-experimental-platform-manifest
+repo init -u https://github.com/loonwerks/case-ta6-experimental-platform-manifest.git
+repo sync
+cd dockerfiles
+HOST_DIR=`pwd`/.. DOCKER_TAG=p2pa1 UXAS_BRANCH=develop-case-ta6-ph2-example01 make uxas_build
+./build-sd-card.sh <dev>
+~~~
+
+These instructions apply Docker containers to fetch necessary prerequisites,
+compilation tools, Uboot and Linux images, etc. to construct a bootable SD card
+for the ODROID XU4 containing an OpenUxAS executable and configuration files.
+
+As a prerequisite to applying these instructions, the Docker service must be
+installed on your host machine.  If this has not already been done, please see
+instructions at the CASE TA6 experimental platform dockerfiles repository in
+the README.md file.
+
+The first four steps apply the Google `repo' tool to make checkouts of CASE TA6
+experimental platform related repositories.  The sixth step applies a Makefile
+to call `docker build` to construct Docker images containing all of the necessary
+build infrastructure and to build an OpenUxAS executable for the ARMv7 target.
+
+The final step automates zeroizing an SD memory card and writing preboot code,
+bootloaders, a Linux installation and the build OpenUxAS software.  The
+build-sd-card.sh script takes a single parameter <dev> giving the device name
+of the raw SD card.
+
+The SD card may then be inserted in the ODROID XU4 and the hardware powered on.
+Note that on the first boot, several items including crypto keys are initialized
+and then the Linux kernel will halt.  On the second and subsequent boots, Linux
+will reach a login prompt were the username `uxas` and password `uxas` may be
+given to reach a shell prompt.
+
+The phase 2 platform assessment 1 configurations should be found in the
+examples/CASE-TA6-Challenge-Problems/ph2_01_WaterwaySearch directory.
+The cfg_WaterwaySearch_GS.xml file will likely need to be edited to name the
+network interface to be used (typically `eth0`) and the IP address of the host
+on which the AMASE visualization is to be run.  The ground station may then be
+invoked with the `./runUxAS_WaterwaySearch_GS.sh` script.
+
+## Obtaining a build environment
 
 To get a running build environment for OpenUxAS targeting the ARMv7, run:
 
